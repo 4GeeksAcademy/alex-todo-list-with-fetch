@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 //include images into your bundle
 import Title from "./Title";
-import InputField from "./InputField";
-import Task from "./Task";
+import TasksContainer from "./TasksContainer";
 
 
 //create your first component
@@ -20,12 +19,8 @@ const Home = () => {
 	return (
 		<div className="container-fluid">
 			<Title/>
-			<InputField submitHandler={submitHandler}/>
-			{
-			tasks.map((obj)=> {
-				return <Task key={obj.id} taskName={obj.task}/>
-			})
-			}
+			<TasksContainer submitHandler={submitHandler} tasks={tasks}/>
+			
         </div>
 	);
 };
