@@ -16,10 +16,16 @@ const Home = () => {
 			e.target.value = ''
 		}
 	}
+
+	const handleDelete = (e) => {
+		setTasks(()=> {
+			return tasks.filter((obj)=> obj.id !== Number(e.target.id))
+		})
+	}
 	return (
 		<div className="container-fluid">
 			<Title/>
-			<TasksContainer submitHandler={submitHandler} tasks={tasks}/>
+			<TasksContainer submitHandler={submitHandler} handleDelete={handleDelete} tasks={tasks}/>
 			
         </div>
 	);
