@@ -8,7 +8,7 @@ import Task from "./Task";
 
 //create your first component
 const Home = () => {
-	const [tasks, setTasks] = useState([{id:'1', task:'bed	'}])
+	const [tasks, setTasks] = useState([])
 	
 	const submitHandler = (e) => {
 		if (e.key === 'Enter') {
