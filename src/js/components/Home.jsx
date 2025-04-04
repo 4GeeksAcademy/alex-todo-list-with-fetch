@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import Title from "./Title";
+import InputField from "./InputField";
+import Task from "./Task";
+
 
 //create your first component
 const Home = () => {
+	const [tasks, setTasks] = useState([{id:'1', task:'bed	'}])
+	
+	const submitHandler = (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			setTasks([...tasks, {id: Date.now(),task: e.target.value}])
+			e.target.value = ''
+		}
+	}
 	return (
-		<div className="text-center">
-            
-
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<div className="container-fluid">
+			<Title/>
+			<InputField submitHandler={submitHandler}/>
+			{
+			tasks.map((obj)=> {
+				return <Task key={obj.id} taskName={obj.task}/>
+			})
+			}
+        </div>
 	);
 };
 
