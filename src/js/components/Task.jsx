@@ -2,6 +2,8 @@ import React from 'react'
 import styles from '../../styles/button.module.css'
 
 const Task = ({taskName, handleDelete, id}) => {
+    if(taskName === '') return null;
+    
     return (
         <div className='row'>
             <div className="col d-flex justify-content-center">
