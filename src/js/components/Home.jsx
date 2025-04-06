@@ -12,7 +12,6 @@ let  user;
 const Home = () => {
 	const [tasks, setTasks] = useState([])
 	const [taskCounter, setTaskCounter] = useState(0)
-	const [user, setUser] = useState('')
 
 	const createTask = async (task) => {
 		const obj = {
@@ -45,6 +44,7 @@ const Home = () => {
 			setTaskCounter((prev)=> prev + 1)
 			e.target.value = ''
 
+
 		}
 	}
 	
@@ -52,7 +52,6 @@ const Home = () => {
 		try {
 			const response = await fetch(url)
 			const data = await response.json()
-			setUser(data.name)
 			setTasks(data.todos)
 			setTaskCounter(data.todos.length)
 			
@@ -61,17 +60,18 @@ const Home = () => {
 		}
 	}
 
-	
-	useEffect(()=> {
+		useEffect(()=> {
 			getUser(`${todoListUrl}/users/alex`)
-	}, [])
+	}, [taskCounter])
+
+	const deleteTask = async (id) => {
+		 await fetch(`${todoListUrl}/todos/${id}`,{method: 'DELETE'})
+		}
 
 	const handleDelete = (e) => {
 		setTaskCounter((prev)=> prev -1 )
-		// setTasks(()=> {
-		// 	return tasks.filter((obj)=> obj.id !== Number(e.target.id))
-		// })
-	}
+		deleteTask(e.target.id)
+		}
 
 
 	return (
