@@ -7,7 +7,8 @@ const TasksContainer = ({submitHandler, tasks, handleDelete})=> {
         <div>
 			<InputField submitHandler={submitHandler}/>
             {
-			tasks.map((item)=> {
+
+			tasks && tasks.map((item)=> {
 				return <Task id={item.id} handleDelete={handleDelete} taskName={item.label} key={item.id} />
 			})
 			}
